@@ -1,3 +1,5 @@
+
+
 import labelVar
 import instruction
 from sys import stdin
@@ -37,14 +39,16 @@ def main():
 	#add a case for the movI and the movR as well otherwise they'll
 	#come under errors 
 	#f = read_from_file()
-	for each in stdin:
-		line = each[:-1].strip().split()
-
-		if isBlankLine(line):
+	"""for each in stdin:
+		if each == '\n':
 			prog_cnter = prog_cnter + 1
 			continue
-
-		elif hlt_count == 1:
+		line = each.strip().split()
+		#print(line)
+		#if isBlankLine(line):
+		#	prog_cnter = prog_cnter + 1
+		#	continue
+		if hlt_count == 1:
 			raise Exception(prog_cnter - 1, "halt not the last instruction")
 
 		elif line[0][-1] == ":":
@@ -80,20 +84,23 @@ def main():
 	for v in storeVar.keys():
 		mem_addr += 1
 		memad = bin(mem_addr)[2:].zfill(8)
-		storeVar[v] = memad
-
+		storeVar[v] = memad"""
 	prog_cnter = 1
 	mem_addr = -1
 	hlt_count = 0
 
 	for each in stdin:
-		line = each[:-1].strip().split()
-
-		if isBlankLine(line):
+		if each == '\n':
 			prog_cnter = prog_cnter + 1
 			continue
+		line = each.strip().split()
+		machine_code.append(line)
+		#machine_code.append(line)
+		#if isBlankLine(line):
+		#	prog_cnter = prog_cnter + 1
+		#	continue
 
-		elif hlt_count == 1:
+		"""if hlt_count == 1:
 			raise Exception("halt not the last instruction")
 
 		elif line[0][-1] == ":":
@@ -124,7 +131,7 @@ def main():
 
 	#for z in mem_ins.keys():
 		#intruction(mem_ins[z], machine_code, z, storeVar, storeLabel)
-	#displaying final result
+	#displaying final result"""
 	for result in machine_code:
 		print(result)
 
