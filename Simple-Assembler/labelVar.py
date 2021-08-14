@@ -13,7 +13,7 @@ def isLabel(instn, labels, var, addr):
 							 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
 							 'z']:
 			return False
-	isd = instn[1].isdigit()
+	isd = instn[0][:-1].isdigit()
 	if isd:
 		return False
 	return True

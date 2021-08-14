@@ -10,7 +10,7 @@ def isInstruction(instn):
 
 def isBlankLine(line):
 
-	return len(line) == 1
+	return len(line) == 0
 
 def main():
 	prog_cnter = 1
@@ -52,7 +52,7 @@ def main():
 		
 		elif line[0] == "hlt":
 			if len(line) == 1:
-				addr_and_pc[2] = 1
+				addr_and_pc[2] += 1
 				addr_and_pc[0] += 1
 			else:
 				raise Exception("Syntax Error at line number", addr_and_pc[1])
