@@ -15,8 +15,8 @@ def isBlankLine(line):
 def main():
 	prog_cnter = 1
 	mem_addr = -1
-	hlt_count= 0
-	addr_and_pc = [ mem_addr, prog_cnter, hlt_count]
+	hlt_count = 0
+	addr_and_pc = [mem_addr, prog_cnter, hlt_count]
 	storeLabel = {}
 	storeVar = {}
 	input_list = []
@@ -31,7 +31,7 @@ def main():
 
 		input_list.append(line)
 		if addr_and_pc[2] == 1:
-			raise Exception(addr_and_pc[1] - 1, "Halt not the last instruction at line number ", addr_and_pc[1])
+			raise Exception("Halt not the last instruction at line number ", addr_and_pc[1] - 1)
 
 		elif line[0][-1] == ":":
 			labelVar.label(line, storeLabel, storeVar, addr_and_pc)
@@ -67,10 +67,11 @@ def main():
 		addr_and_pc[0] += 1
 		memad = bin(addr_and_pc[0])[2:].zfill(8)
 		storeVar[v] = memad
+
+	# SECOND ITERATION
 	addr_and_pc[1] = 1
 	addr_and_pc[0] = -1
 
-	# SECOND ITERATION
 	for line in input_list:
 
 		if line[0][-1] == ":":
