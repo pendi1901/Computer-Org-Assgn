@@ -150,3 +150,5 @@ Simple-Assembler/test1out.txt
 Simple-Assembler/out.txt
 .gitignore
 Simple-Assembler/test2
+automatedTesting/tests/assembly/errorGen/test4
+automatedTesting/tests/assembly/errorGen/test1
