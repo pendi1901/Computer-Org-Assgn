@@ -1,19 +1,17 @@
 import Execution_Engine
 from sys import stdin
 # import matplotlib
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-def memory_initialisation(mem):
+def initialization(memory):
     for inst in stdin:
-        # What is being split?
-        #line =
         line = inst.strip().split()
         if len(line) == 0:
             continue
-        mem.append(line)
+        memory.append(line)
 
-def display(PC, reg):
-    pc = bin(PC)[2:]
+def display(pc, reg):
+    pc = bin(pc)[2:]
     pc = pc.zfill(8)
     print(pc, end = " ")
     regs = reg.keys()
@@ -28,23 +26,24 @@ def display(PC, reg):
 def main():
 
     memory = []
-    PC = 0
+    pc = 0
     hlt = 1
-    PC_and_Halt = [PC, hlt]
-    CC = 0
+    pc_and_halt = [pc, hlt]
+    cc = 0
     var = {}
-    CC_x = []
-    PC_y = []
+    cc_x = []
+    pc_y = []
     register_file = {"000": 0, "001": 0, "010": 0, "011": 0, "100": 0, "101": 0, "110": 0, "111": "0000"}
-    memory_initialisation(memory)
-    while PC_and_Halt[1]:
-        instn = memory[PC][0]
-        Execution_Engine.exec(instn, PC_and_Halt, register_file, var)
-        display(PC, register_file)
-        CC_x.append(CC)
-        PC_y.append(PC)
-        PC = PC_and_Halt[0]
-        CC += 1
+    initialization(memory)
+
+    while pc_and_halt[1]:
+        instn = memory[pc][0]
+        Execution_Engine.exec(instn, pc_and_halt, register_file, var)
+        display(pc, register_file)
+        cc_x.append(cc)
+        pc_y.append(pc)
+        pc = pc_and_halt[0]
+        cc += 1
     vkeys = var.keys()
     vkeys = list(vkeys)
     vkeys.sort()
@@ -58,10 +57,10 @@ def main():
     for line in memory:
         print(line[0])
 
-    plt.scatter(CC_x,PC_y)
-    plt.xlabel("Cycle Number")
-    plt.ylabel("Memory Address")
-    plt.show()
+    # plt.scatter(cc_x,pc_y)
+    # plt.xlabel("Cycle Number")
+    # plt.ylabel("Memory Address")
+    # plt.show()
 
 if __name__ == '__main__':
     main()

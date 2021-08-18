@@ -1,50 +1,50 @@
 
 def exec(instn, pch, reg, var):
-    opc = instn[:5]
+    opcode = instn[:5]
     #fnc_call_gen = {"00000": add(instn, pch, reg), "00001": sub(instn, pch, reg), "00010": movI(instn, pch, reg),
      #               "00011": movR(instn, pch, reg), "00100": load(instn, pch, reg, var), "00101": store(instn, pch, reg),
       #              var), "00110": mul(instn, pch, reg), "00111": div(instn, pch, reg), "01000": rshift(instn, pch, reg),
        #             "01001": lshift(instn, pch, reg), "01010": xor(instn, pch, reg), "01011": OR(instn, pch, reg),
-        #            "01100": AND(instn, pch, reg), "01101": invert(instn, pch, reg), "01110": cmp(instn, pch, reg),
+        #            "01100": AND(instn, pch, reg), "01101": invert(instn, pch, reg), "01110": cmpr(instn, pch, reg),
          #           "01111": jmp(instn, pch, reg), "10000": jlt(instn, pch, reg), "10001": jgt(instn, pch, reg),
           #          "10010": je(instn, pch, reg), "10011": hlt(pch, reg)}
-    if opc == "00010":
+    if opcode == "00010":
         movI(instn, pch, reg)
-    elif opc == "00101":
+    elif opcode == "00101":
         store(instn, pch, reg, var)
-    elif opc == "10010":
+    elif opcode == "10010":
         je(instn, pch, reg)
-    elif opc == "00000":
+    elif opcode == "00000":
         add(instn, pch, reg)
-    elif opc == "00001":
+    elif opcode == "00001":
         sub(instn, pch, reg)
-    elif opc == "00011":
+    elif opcode == "00011":
         movR(instn, pch, reg)
-    elif opc == "00100":
+    elif opcode == "00100":
         load(instn, pch, reg, var)
-    elif opc == "00110":
+    elif opcode == "00110":
         mul(instn, pch, reg)
-    elif opc == "00111":
+    elif opcode == "00111":
         div(instn, pch, reg)
-    elif opc == "01000":
+    elif opcode == "01000":
         rshift(instn, pch, reg)
-    elif opc == "01001":
+    elif opcode == "01001":
         lshift(instn, pch, reg)
-    elif opc == "01010":
+    elif opcode == "01010":
         xor(instn, pch, reg)
-    elif opc == "01011":
+    elif opcode == "01011":
         OR(instn, pch, reg)
-    elif opc == "01100":
+    elif opcode == "01100":
         AND(instn, pch, reg)
-    elif opc == "01101":
+    elif opcode == "01101":
         invert(instn, pch, reg)
-    elif opc == "01110":
-        cmp(instn, pch, reg)
-    elif opc == "01111":
+    elif opcode == "01110":
+        cmpr(instn, pch, reg)
+    elif opcode == "01111":
         jmp(instn, pch, reg)
-    elif opc == "10000":
+    elif opcode == "10000":
         jlt(instn, pch, reg)
-    elif opc == "10001":
+    elif opcode == "10001":
         jgt(instn, pch, reg)
     else:
         hlt(pch, reg)
@@ -184,7 +184,7 @@ def invert(instn, pch, reg):
     reg[r1] = ~ reg[r2]
     pch[0] += 1
 
-def cmp(instn, pch, reg):
+def cmpr(instn, pch, reg):
     r1 = instn[-6:-3]
     r2 = instn[-3:]
     if reg[r1] < reg[r2]:
