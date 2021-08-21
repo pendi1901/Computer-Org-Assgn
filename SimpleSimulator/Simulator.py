@@ -1,14 +1,9 @@
 import Execution_Engine
 from sys import stdin
-# import matplotlib
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 def initialization(memory):
     for inst in stdin:
-        # line = inst.strip().split()
-        # if len(line) == 0:
-        #     continue
-        # memory.append(line)
         memory.append(inst.strip())
 
 def display(pc, reg):
@@ -39,11 +34,14 @@ def main():
     initialization(memory)
    
     while pc_and_halt[1]:
-        # instn = memory[pc][0]
         instn = memory[pc]
         Execution_Engine.exec(instn, pc_and_halt, register_file, var)
         display(pc, register_file)
         cc_x.append(cc)
+        if instn[:5] == "00101" or instn[:5] == "00100":
+            a = (int(instn[-8:], 2))
+            pc_y.append(a)
+            cc_x.append(cc)
         pc_y.append(pc)
         pc = pc_and_halt[0]
         cc += 1
@@ -53,20 +51,17 @@ def main():
     i = len(memory) + len(vkeys)
 
     for v in vkeys:
-        # memory.append([bin(var[v])[2:].zfill(16)])
         memory.append(bin(var[v])[2:].zfill(16))
     while i != 256:
-        # memory.append(["0000000000000000"])
         memory.append("0000000000000000")
         i = i + 1
     for line in memory:
-        # print(line[0])
         print(line)
 
-    # plt.scatter(cc_x,pc_y)
-    # plt.xlabel("Cycle Number")
-    # plt.ylabel("Memory Address")
-    # plt.show()
+    plt.scatter(cc_x,pc_y)
+    plt.xlabel("Cycle Number")
+    plt.ylabel("Memory Address")
+    plt.show()
 
 if __name__ == '__main__':
     main()
