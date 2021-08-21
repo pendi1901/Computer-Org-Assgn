@@ -5,10 +5,11 @@ from sys import stdin
 
 def initialization(memory):
     for inst in stdin:
-        line = inst.strip().split()
-        if len(line) == 0:
-            continue
-        memory.append(line)
+        # line = inst.strip().split()
+        # if len(line) == 0:
+        #     continue
+        # memory.append(line)
+        memory.append(inst.strip())
 
 def display(pc, reg):
     pc = bin(pc)[2:]
@@ -34,10 +35,12 @@ def main():
     cc_x = []
     pc_y = []
     register_file = {"000": 0, "001": 0, "010": 0, "011": 0, "100": 0, "101": 0, "110": 0, "111": "0000"}
-    initialization(memory)
 
+    initialization(memory)
+   
     while pc_and_halt[1]:
-        instn = memory[pc][0]
+        # instn = memory[pc][0]
+        instn = memory[pc]
         Execution_Engine.exec(instn, pc_and_halt, register_file, var)
         display(pc, register_file)
         cc_x.append(cc)
@@ -50,12 +53,15 @@ def main():
     i = len(memory) + len(vkeys)
 
     for v in vkeys:
-        memory.append([bin(var[v])[2:].zfill(16)])
+        # memory.append([bin(var[v])[2:].zfill(16)])
+        memory.append(bin(var[v])[2:].zfill(16))
     while i != 256:
-        memory.append(["0000000000000000"])
+        # memory.append(["0000000000000000"])
+        memory.append("0000000000000000")
         i = i + 1
     for line in memory:
-        print(line[0])
+        # print(line[0])
+        print(line)
 
     # plt.scatter(cc_x,pc_y)
     # plt.xlabel("Cycle Number")
