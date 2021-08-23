@@ -31,7 +31,7 @@ def exec(instn, pch, reg, var):
     elif opc == "01101":
         invert(instn, pch, reg)
     elif opc == "01110":
-        cmp(instn, pch, reg)
+        cmpr(instn, pch, reg)
     elif opc == "01111":
         jmp(instn, pch, reg)
     elif opc == "10000":
@@ -178,7 +178,7 @@ def invert(instn, pch, reg):
     reg[r1] = ~ reg[r2]
     pch[0] += 1
 
-def cmp(instn, pch, reg):
+def cmpr(instn, pch, reg):
     r1 = instn[-6:-3]
     r2 = instn[-3:]
     if reg[r1] < reg[r2]:
