@@ -61,7 +61,7 @@ def main():
     plt.scatter(cc_x,pc_y)
     plt.xlabel("Cycle Number")
     plt.ylabel("Memory Address")
-    plt.show()
+    plt.savefig("test.png")
 
 if __name__ == '__main__':
     main()

@@ -175,7 +175,7 @@ def invert(instn, pch, reg):
     reg["111"] = "0000"
     r1 = instn[-6:-3]
     r2 = instn[-3:]
-    reg[r1] = ~ reg[r2]
+    reg[r1] = 65535 - reg[r2]
     pch[0] += 1
 
 def cmpr(instn, pch, reg):
